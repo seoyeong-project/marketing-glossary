@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>초보 마케터를 위한 마케팅 용어 사전</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Pretendard', 'Segoe UI', sans-serif; background: #f5f4f0; color: #1a1a1a; min-height: 100vh; }
+
+  header { background: #fff; border-bottom: 0.5px solid #e0deda; padding: 1.5rem 2rem; }
+  header h1 { font-size: 18px; font-weight: 500; color: #1a1a1a; }
+  header p { font-size: 13px; color: #888; margin-top: 3px; }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 1.5rem 1.5rem; }
+
+  .search-wrap { margin-bottom: 1rem; }
+  input[type=search] {
+    width: 100%; padding: 10px 14px; font-size: 14px;
+    border: 0.5px solid #d0cec8; border-radius: 10px;
+    background: #fff; outline: none; color: #1a1a1a;
+    font-family: inherit;
+  }
+  input[type=search]:focus { border-color: #378ADD; box-shadow: 0 0 0 3px rgba(55,138,221,0.12); }
+
+  .filters { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .f-btn {
+    font-size: 12px; padding: 5px 14px; border-radius: 20px;
+    border: 0.5px solid #c8c6c0; background: #fff; color: #666;
+    cursor: pointer; transition: all .15s; font-family: inherit;
+  }
+  .f-btn:hover { border-color: #378ADD; color: #185FA5; }
+  .f-btn.active { background: #E6F1FB; color: #185FA5; border-color: #378ADD; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 12px; }
+
+  .card {
+    background: #fff; border: 0.5px solid #e0deda;
+    border-radius: 14px; padding: 1rem 1.1rem;
+    cursor: pointer; transition: all .2s; position: relative;
+  }
+  .card:hover { border-color: #c0bdb8; }
+  .card.selected { border: 2px solid #378ADD; background: #EBF3FC; }
+  .card.related { border: 1.5px dashed #378ADD; }
+  .card.dimmed { opacity: 0.35; }
+
+  .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+  .term { font-size: 16px; font-weight: 600; color: #1a1a1a; }
+  .eng { font-size: 11px; color: #aaa; margin-top: 2px; }
+  .korean { font-size: 11px; color: #888; margin-top: 1px; }
+  .badges { display: flex; gap: 5px; align-items: flex-start; flex-wrap: wrap; justify-content: flex-end; flex-shrink: 0; }
+
+  .cat-badge { font-size: 11px; padding: 2px 8px; border-radius: 10px; white-space: nowrap; }
+  .rel-badge {
+    font-size: 10px; padding: 2px 7px; border-radius: 10px;
+    background: #E6F1FB; color: #185FA5; border: 0.5px solid #378ADD;
+    display: none; white-space: nowrap;
+  }
+  .card.related .rel-badge { display: inline-block; }
+
+  .def { font-size: 13px; color: #555; line-height: 1.65; }
+  .formula {
+    font-size: 12px; font-family: 'SF Mono', 'Fira Code', monospace;
+    background: #f5f4f0; padding: 5px 9px; border-radius: 6px;
+    margin-top: 8px; color: #666;
+  }
+  .rel-how {
+    font-size: 12px; color: #185FA5; margin-top: 8px;
+    padding: 5px 9px; background: #E6F1FB; border-radius: 6px;
+    display: none;
+  }
+  .card.related .rel-how { display: block; }
+
+  .related-wrap { margin-top: 10px; padding-top: 10px; border-top: 0.5px solid #e8e6e2; display: none; }
+  .related-wrap.show { display: block; }
+  .rel-label { font-size: 11px; color: #aaa; margin-bottom: 8px; }
+  .rel-chips { display: flex; flex-direction: column; gap: 8px; }
+  .rel-item { display: flex; align-items: baseline; gap: 8px; }
+  .rel-chip {
+    font-size: 11px; padding: 3px 10px; border-radius: 12px;
+    border: 0.5px solid #d0cec8; color: #555; cursor: pointer;
+    background: #f5f4f0; white-space: nowrap; flex-shrink: 0;
+    font-family: inherit;
+  }
+  .rel-chip:hover { border-color: #378ADD; color: #185FA5; background: #E6F1FB; }
+  .rel-type { font-size: 12px; color: #aaa; line-height: 1.4; }
+
+  .empty { text-align: center; padding: 3rem 1rem; color: #aaa; font-size: 14px; grid-column: 1/-1; }
+
+  /* 카테고리 배지 색상 */
+  .cat-성과측정 { background: #E6F1FB; color: #0C447C; }
+  .cat-광고유료 { background: #FAEEDA; color: #633806; }
+  .cat-고객유입 { background: #EAF3DE; color: #27500A; }
+  .cat-전환수익 { background: #EEEDFE; color: #3C3489; }
+  .cat-콘텐츠브랜드 { background: #FAECE7; color: #712B13; }
+  .cat-데이터분석 { background: #F1EFE8; color: #444441; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>마케팅 용어 사전</h1>
+  <p>아ㅋ 모르는 건 아닌데 확실히 하고 싶어서 보는 거예요~ · 용어 클릭 시 연관 지표 확인 가능</p>
+</header>
+
+<div class="container">
+  <div class="search-wrap">
+    <input type="search" placeholder="용어 검색 (예: CTR, 클릭률, 전환...)" id="q" oninput="render()">
+  </div>
+  <div class="filters" id="filters"></div>
+  <div class="grid" id="grid"></div>
+</div>
+
+<script>
+const CAT_STYLE = {
+  "성과측정": "cat-성과측정",
+  "광고·유료": "cat-광고유료",
+  "고객·유입": "cat-고객유입",
+  "전환·수익": "cat-전환수익",
+  "콘텐츠·브랜드": "cat-콘텐츠브랜드",
+  "데이터·분석": "cat-데이터분석"
+};
+
+const TERMS = [
+  {id:"ctr",term:"CTR",eng:"Click-Through Rate",korean:"클릭률",cat:"성과측정",def:"광고나 콘텐츠가 노출된 횟수 대비 실제로 클릭된 비율. 광고 소재나 카피의 매력도를 가늠하는 가장 기본 지표.",formula:"CTR = 클릭수 ÷ 노출수 × 100",related:[{id:"cpc",label:"CPC",how:"CTR이 높으면 CPC 하락"},{id:"cpm",label:"CPM",how:"노출 기반 지표로 연동"},{id:"cr",label:"전환율",how:"클릭 이후 단계"}]},
+  {id:"cpc",term:"CPC",eng:"Cost Per Click",korean:"클릭당 비용",cat:"광고·유료",def:"광고 클릭 한 번에 지출되는 평균 비용. 검색광고·디스플레이 광고 효율을 볼 때 필수로 확인.",formula:"CPC = 총 광고비 ÷ 총 클릭수",related:[{id:"ctr",label:"CTR",how:"CTR↑ → CPC↓"},{id:"roas",label:"ROAS",how:"CPC와 매출로 효율 판단"},{id:"cpa",label:"CPA",how:"CPC보다 더 아래 단계"}]},
+  {id:"cpm",term:"CPM",eng:"Cost Per Mille",korean:"천 회 노출 비용",cat:"광고·유료",def:"광고 1,000번 노출당 드는 비용. 브랜드 인지도를 높이려는 캠페인에서 주로 사용하는 구매 방식.",formula:"CPM = (총 광고비 ÷ 노출수) × 1,000",related:[{id:"ctr",label:"CTR",how:"노출 → 클릭으로 이어짐"},{id:"reach",label:"도달률",how:"노출과 함께 봐야 함"}]},
+  {id:"cr",term:"전환율",eng:"CR · Conversion Rate",cat:"전환·수익",def:"사이트 방문자 중 구매·가입 등 목표 행동을 완료한 비율. 랜딩페이지 품질과 UX를 반영하는 핵심 지표.",formula:"CR = 전환수 ÷ 방문자수 × 100",related:[{id:"cpa",label:"CPA",how:"CR↑ → CPA↓"},{id:"ctr",label:"CTR",how:"클릭 이후 단계"},{id:"ltv",label:"LTV",how:"전환 품질이 LTV에 영향"},{id:"roas",label:"ROAS",how:"CR이 ROAS를 결정"}]},
+  {id:"cpa",term:"CPA",eng:"Cost Per Acquisition",korean:"전환당 비용",cat:"전환·수익",def:"고객 한 명을 전환(구매·가입)시키는 데 드는 평균 비용. 광고 투자 효율의 최종 판단 기준.",formula:"CPA = 총 광고비 ÷ 전환수",related:[{id:"cpc",label:"CPC",how:"CPC × 단계별 CR = CPA"},{id:"cr",label:"전환율",how:"CR↑ → CPA↓"},{id:"roas",label:"ROAS",how:"함께 보는 효율 지표"},{id:"ltv",label:"LTV",how:"CPA < LTV 여야 수익"}]},
+  {id:"roas",term:"ROAS",eng:"Return on Ad Spend",korean:"광고비 대비 수익률",cat:"전환·수익",def:"광고비 1원당 발생한 매출. 100% = 본전, 300% 이상이면 일반적으로 양호하다고 보지만 마진율에 따라 다름.",formula:"ROAS = 광고 매출 ÷ 광고비 × 100",related:[{id:"cpa",label:"CPA",how:"함께 캠페인 효율 판단"},{id:"cr",label:"전환율",how:"CR이 ROAS 결정"},{id:"ltv",label:"LTV",how:"LTV 높으면 ROAS 기준 낮춰도 OK"}]},
+  {id:"ltv",term:"LTV",eng:"Customer Lifetime Value",korean:"고객 생애 가치",cat:"고객·유입",def:"한 고객이 관계를 유지하는 동안 발생시킬 것으로 예상되는 총 수익. CAC 대비 LTV가 높아야 지속 성장 가능.",formula:"LTV = 평균 구매금액 × 구매빈도 × 평균 유지기간",related:[{id:"cac",label:"CAC",how:"LTV : CAC = 3:1 이상이 이상적"},{id:"cr",label:"전환율",how:"전환 품질이 LTV에 영향"},{id:"churn",label:"이탈률",how:"이탈률↑ → LTV↓"}]},
+  {id:"cac",term:"CAC",eng:"Customer Acquisition Cost",korean:"고객 획득 비용",cat:"고객·유입",def:"신규 고객 한 명을 획득하는 데 드는 총 비용(마케팅+영업비 포함). LTV와 함께 비즈니스 건전성 판단.",formula:"CAC = 총 마케팅·영업비 ÷ 신규 고객수",related:[{id:"ltv",label:"LTV",how:"LTV ÷ CAC = 핵심 건전성 지표"},{id:"cpa",label:"CPA",how:"CPA의 넓은 개념"}]},
+  {id:"churn",term:"이탈률",eng:"Churn Rate",cat:"고객·유입",def:"일정 기간 동안 서비스를 떠난 고객의 비율. 구독 서비스나 앱에서 특히 중요하게 추적.",formula:"이탈률 = 이탈 고객수 ÷ 기초 고객수 × 100",related:[{id:"ltv",label:"LTV",how:"이탈률↑ → LTV↓"},{id:"retention",label:"리텐션",how:"이탈률의 반대 개념"}]},
+  {id:"retention",term:"리텐션",eng:"Retention Rate",cat:"고객·유입",def:"일정 기간 후에도 서비스를 계속 이용하는 고객의 비율. 제품 만족도와 충성도를 직접 반영.",formula:"리텐션 = (기말 고객 - 신규 고객) ÷ 기초 고객 × 100",related:[{id:"churn",label:"이탈률",how:"리텐션 = 1 - 이탈률"},{id:"ltv",label:"LTV",how:"리텐션↑ → LTV↑"}]},
+  {id:"reach",term:"도달률",eng:"Reach",cat:"콘텐츠·브랜드",def:"특정 콘텐츠나 광고를 본 순 사용자 수. 노출수(Impression)와 달리 중복 제거된 실제 사람 수.",related:[{id:"cpm",label:"CPM",how:"노출 기반으로 연동"},{id:"impression",label:"노출수",how:"도달 = 중복 제거된 노출"}]},
+  {id:"impression",term:"노출수",eng:"Impression",cat:"성과측정",def:"광고나 콘텐츠가 화면에 표시된 총 횟수. 같은 사람에게 여러 번 노출되어도 모두 카운트됨.",related:[{id:"ctr",label:"CTR",how:"노출이 CTR 분모"},{id:"reach",label:"도달률",how:"노출의 중복 제거 버전"},{id:"cpm",label:"CPM",how:"1000 노출당 비용"}]},
+  {id:"bounce",term:"바운스율",eng:"Bounce Rate",cat:"데이터·분석",def:"웹사이트에 방문해서 단 한 페이지만 보고 떠난 비율. 랜딩페이지 관련성·로딩 속도 문제를 진단할 때 활용.",formula:"바운스율 = 단일 페이지 세션 ÷ 전체 세션 × 100",related:[{id:"cr",label:"전환율",how:"바운스↑ → 전환율↓"},{id:"session",label:"세션",how:"세션 단위로 측정"}]},
+  {id:"session",term:"세션",eng:"Session",cat:"데이터·분석",def:"사용자가 웹사이트에 방문해서 떠날 때까지의 활동 단위. 보통 30분 비활동 시 새 세션으로 집계.",related:[{id:"bounce",label:"바운스율",how:"세션 기반 지표"},{id:"cr",label:"전환율",how:"세션 중 전환 측정"}]},
+  {id:"funnel",term:"퍼널",eng:"Marketing Funnel",cat:"데이터·분석",def:"잠재 고객이 인지 → 관심 → 고려 → 구매로 이어지는 단계별 흐름. 각 단계 이탈을 분석해 개선점을 찾음.",related:[{id:"cr",label:"전환율",how:"각 단계 전환율이 핵심"},{id:"cpa",label:"CPA",how:"퍼널 최적화로 CPA 개선"},{id:"cac",label:"CAC",how:"퍼널 효율이 CAC 결정"}]},
+  {id:"ab",term:"A/B 테스트",eng:"A/B Test",cat:"데이터·분석",def:"두 가지 버전(A안·B안)을 동시에 운영해 어느 것이 더 효과적인지 데이터로 검증하는 실험 방법.",related:[{id:"cr",label:"전환율",how:"A/B로 CR 최적화"},{id:"ctr",label:"CTR",how:"카피·소재 CTR 비교"},{id:"bounce",label:"바운스율",how:"랜딩 개선 측정"}]},
+  {id:"roi",term:"ROI",eng:"Return on Investment",korean:"투자 대비 수익률",cat:"전환·수익",def:"마케팅에 투자한 비용 대비 실제로 얼마나 순이익이 났는지 나타내는 지표. ROAS와 달리 비용을 뺀 순익 기준.",formula:"ROI = (순이익 - 투자비용) ÷ 투자비용 × 100",related:[{id:"roas",label:"ROAS",how:"ROAS는 매출 기준, ROI는 순익 기준"},{id:"cpa",label:"CPA",how:"비용 효율성과 연계"}]},
+  {id:"kpi",term:"KPI",eng:"Key Performance Indicator",korean:"핵심 성과 지표",cat:"성과측정",def:"마케팅 목표 달성 여부를 측정하기 위해 정한 핵심 지표들. 캠페인마다 다르며, 목표가 먼저 설정되어야 의미 있음.",related:[{id:"ctr",label:"CTR",how:"KPI 중 하나가 될 수 있음"},{id:"cr",label:"전환율",how:"KPI 중 하나"},{id:"roas",label:"ROAS",how:"KPI 중 하나"}]},
+];
+
+let active = "전체", selected = null;
+
+function getRelatedIds(id) {
+  const t = TERMS.find(x => x.id === id);
+  return t && t.related ? t.related.map(r => r.id) : [];
+}
+function getHow(selId, relId) {
+  const t = TERMS.find(x => x.id === selId);
+  if (!t || !t.related) return "";
+  const r = t.related.find(x => x.id === relId);
+  return r ? r.how : "";
+}
+
+function render() {
+  const q = document.getElementById("q").value.toLowerCase();
+  const filt = active === "전체" ? TERMS : TERMS.filter(t => t.cat === active);
+  const results = q ? filt.filter(t =>
+    t.term.toLowerCase().includes(q) || t.eng.toLowerCase().includes(q) ||
+    t.def.includes(q) || (t.formula || "").includes(q) || (t.korean || "").includes(q)
+  ) : filt;
+
+  const relIds = selected ? getRelatedIds(selected) : [];
+  const hasFilter = !!selected;
+  const grid = document.getElementById("grid");
+
+  if (!results.length) {
+    grid.innerHTML = `<div class="empty">검색 결과가 없어요</div>`;
+    return;
+  }
+
+  grid.innerHTML = results.map(t => {
+    const isSel = selected === t.id;
+    const isRel = relIds.includes(t.id);
+    const isDimmed = hasFilter && !isSel && !isRel;
+    const how = isRel ? getHow(selected, t.id) : "";
+    const catClass = CAT_STYLE[t.cat] || "";
+
+    const relHtml = t.related ? `<div class="related-wrap ${isSel ? 'show' : ''}">
+      <div class="rel-label">연관 지표</div>
+      <div class="rel-chips">${t.related.map(r => `
+        <div class="rel-item">
+          <button class="rel-chip" onclick="goTo('${r.id}',event)">${r.label}</button>
+          <span class="rel-type">${r.how}</span>
+        </div>`).join("")}
+      </div>
+    </div>` : "";
+
+    return `<div class="card${isSel ? ' selected' : ''}${isRel ? ' related' : ''}${isDimmed ? ' dimmed' : ''}" onclick="toggle('${t.id}',event)">
+      <div class="card-top">
+        <div>
+          <div class="term">${t.term}</div>
+          <div class="eng">${t.eng}</div>
+          ${t.korean ? `<div class="korean">${t.korean}</div>` : ""}
+        </div>
+        <div class="badges">
+          <span class="rel-badge">연관 지표</span>
+          <span class="cat-badge ${catClass}">${t.cat}</span>
+        </div>
+      </div>
+      <div class="def">${t.def}</div>
+      ${t.formula ? `<div class="formula">${t.formula}</div>` : ""}
+      ${isRel && how ? `<div class="rel-how">↳ ${how}</div>` : ""}
+      ${relHtml}
+    </div>`;
+  }).join("");
+}
+
+function toggle(id, e) {
+  e.stopPropagation();
+  selected = (selected === id) ? null : id;
+  render();
+}
+function goTo(id, e) {
+  e.stopPropagation();
+  active = "전체";
+  document.getElementById("q").value = "";
+  selected = id;
+  document.querySelectorAll(".f-btn").forEach(b => b.classList.toggle("active", b.dataset.cat === "전체"));
+  render();
+  setTimeout(() => {
+    const el = document.querySelector(".card.selected");
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, 100);
+}
+function setFilter(cat) {
+  active = cat; selected = null;
+  document.querySelectorAll(".f-btn").forEach(b => b.classList.toggle("active", b.dataset.cat === cat));
+  render();
+}
+function buildFilters() {
+  const cats = ["전체", "성과측정", "광고·유료", "고객·유입", "전환·수익", "콘텐츠·브랜드", "데이터·분석"];
+  document.getElementById("filters").innerHTML = cats.map(c =>
+    `<button class="f-btn${c === "전체" ? " active" : ""}" data-cat="${c}" onclick="setFilter('${c}')">${c}</button>`
+  ).join("");
+}
+buildFilters();
+render();
+</script>
+</body>
+</html>
